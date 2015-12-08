@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc
+http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+	default-autowire="byName">
+	
+	<context:annotation-config />
+	
+	<bean id="usuarioDao" class="daos.UsuarioDao" />
+	
+	<bean id="bienvenidaAction" class="actions.BienvenidaAction" />
+	
+	<bean id="registrarseAction" class="actions.RegistrarseAction" >
+		<property name="daoUsuario" ref="usuarioDao" />
+	</bean>
+	
+	<bean id="checkUsuarioAction" class="actions.CheckUsuarioAction" >
+		<property name="daoUsuario" ref="usuarioDao" />
+	</bean>
+	
+	<bean id="iniciarSesionAction" class="actions.IniciarSesionAction" />
+	<bean id="cerrarSesionAction" class="actions.CerrarSesionAction" />
+</beans>

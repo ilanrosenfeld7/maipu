@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+<constant name="struts.objectFactory"
+		value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
+	<constant name="struts.ObjectFactory.spring.autowire" value="type" />
+	<constant name="struts.custom.i18n.resources" value="textos.textos_es" />
+	
+	<package name="default" namespace="/" extends="struts-default,json-default">
+	
+		<!-- <default-interceptor-ref name="testSessionValidationStack" /> -->
+		<!-- Cuando se acaba el time se redirige a index.jsp -->
+		<global-results>
+			<result name="session">index.jsp</result>
+		</global-results>
+		
+		<action name="bienvenida" class="bienvenidaAction">
+			<result name="success">index.jsp</result>
+			<result name="input">index.jsp</result>
+		</action>
+		
+		<action name="registrarse" class="registrarseAction">
+			<result name="success">index.jsp</result>
+			<result name="input">index.jsp</result>
+		</action>
+		
+		<action name="checkUsuario" class="checkUsuarioAction">
+			<result name="success">index.jsp</result>
+			<result name="input">index.jsp</result>
+		</action>
+		
+		<action name="iniciarSesion" class="iniciarSesionAction">
+			<result name="success">vistaUsuario.jsp</result>
+			<result name="input">index.jsp</result>
+		</action>
+		
+		<action name="cerrarSesion" class="cerrarSesionAction">
+			<result name="success">index.jsp</result>
+			<result name="input">index.jsp</result>
+		</action>
+	
+	</package>
+    
+</struts>
