@@ -27,6 +27,10 @@ public class Empresa {
 	 * A MAYOR CALIDAD, MAYOR LA CHANCE DE QUE FIGURE EN LA PRIMERA BÚSQUEDA **/
 	private int calidad;
 	
+	public Empresa(){
+		
+	}
+	
 	public Empresa(String nombre, String rubro, String direccion,
 			String telefono, String descripcion, ArrayList<String> etiquetas, int calidad, Usuario usuario) {
 		super();

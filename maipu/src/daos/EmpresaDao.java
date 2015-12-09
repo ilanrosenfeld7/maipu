@@ -27,8 +27,23 @@ public class EmpresaDao implements GenericDao<Empresa> {
 
 	@Override
 	public ArrayList<Empresa> recuperarTodos() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Empresa> resultado = null;
+		EntityManager em = EMF.getEMF().createEntityManager();
+		Query consulta = em
+				.createQuery("select e from Empresa e");
+		resultado = (ArrayList<Empresa>) consulta.getResultList();
+
+		em.close();
+		return resultado;
+	}
+	
+	public ArrayList<String> recuperarNombresEmpresas() {
+		ArrayList<String> resultado = null;
+		ArrayList<Empresa> empresas = this.recuperarTodos();
+		for(Empresa e: empresas){
+			resultado.add(e.getNombre());
+		}
+		return resultado;
 	}
 
 	@Override
@@ -59,27 +74,27 @@ public class EmpresaDao implements GenericDao<Empresa> {
 		boolean hayWhere = false;
 		
 		if (parametros.containsKey("nombre")) {
-			con += " where lower(e.nombre) like :nombre";
+			con += " where lower(e.nombre) like lower(:nombre)";
 			hayWhere = true;
 		}
 		
 		if (parametros.containsKey("rubro")) {
 			if(!hayWhere){
-				con += " where lower(e.rubro) like :rubro";
+				con += " where lower(e.rubro) like lower(:rubro)";
 				hayWhere = true;
-			} else con += " and lower(e.rubro) like :rubro";
+			} else con += " and lower(e.rubro) like lower(:rubro)";
 		}
 		
 		if (parametros.containsKey("direccion")) {
 			if(!hayWhere){
-				con += " where lower(e.direccion) like :direccion";
+				con += " where lower(e.direccion) like lower(:direccion)";
 				hayWhere = true;
-			} else con += " and lower(e.direccion) like :direccion";
+			} else con += " and lower(e.direccion) like lower(:direccion)";
 		}
 		
 		if (parametros.containsKey("descripcion")) {
-			if(!hayWhere) con += " where lower(e.descripcion) like :descripcion";
-			else con += " and lower(e.descripcion) like :descripcion";
+			if(!hayWhere) con += " where lower(e.descripcion) like lower(:descripcion)";
+			else con += " and lower(e.descripcion) like lower(:descripcion)";
 		}
 
 		/**ESTA PARTE ES PARA LA TABLA DESPLEGADA DE EMPRESAS, PODER ORDENAR POR EL CAMPO QUE SE DESEE 

@@ -8,7 +8,7 @@
 		value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
 	<constant name="struts.ObjectFactory.spring.autowire" value="type" />
 	<constant name="struts.custom.i18n.resources" value="textos.textos_es" />
-	
+        
 	<package name="default" namespace="/" extends="struts-default,json-default">
 	
 		<!-- <default-interceptor-ref name="testSessionValidationStack" /> -->
@@ -16,6 +16,14 @@
 		<global-results>
 			<result name="session">index.jsp</result>
 		</global-results>
+		
+		<action name="searchAction" class="autoCompleteAction">
+                        <result type="json">
+                           <param name="excludeNullProperties">true</param>
+                           <param name="encoding">UTF-8</param>
+                          <param name="noCache">true</param>
+                       </result>
+        </action>
 		
 		<action name="bienvenida" class="bienvenidaAction">
 			<result name="success">index.jsp</result>

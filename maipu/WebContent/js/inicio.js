@@ -1,5 +1,6 @@
  $(document).ready(function(){  		
 	
+	 
 	$("#invisible").hide();
 	$("#resultado").hide();
 	

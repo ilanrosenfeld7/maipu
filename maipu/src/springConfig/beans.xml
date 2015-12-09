@@ -15,6 +15,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd"
 	<context:annotation-config />
 	
 	<bean id="usuarioDao" class="daos.UsuarioDao" />
+	<bean id="empresaDao" class="daos.EmpresaDao" />
 	
 	<bean id="bienvenidaAction" class="actions.BienvenidaAction" />
 	
@@ -27,5 +28,9 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd"
 	</bean>
 	
 	<bean id="iniciarSesionAction" class="actions.IniciarSesionAction" />
+	
+	<bean id="autoCompleteAction" class="actions.AutoCompleteAction" >
+		<property name="daoEmpresa" ref="empresaDao" />
+	</bean>
 	<bean id="cerrarSesionAction" class="actions.CerrarSesionAction" />
 </beans>

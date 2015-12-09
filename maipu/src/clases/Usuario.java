@@ -22,6 +22,10 @@ public class Usuario {
 	@OneToMany(cascade={CascadeType.PERSIST,CascadeType.REMOVE},orphanRemoval=true,mappedBy="usuario", fetch=FetchType.EAGER)
 	private Collection<Empresa> empresas;
 
+	public Usuario(){
+		
+	}
+	
 	public Usuario(String usuario, String contrasena, String mail) {
 		super();
 		this.usuario = usuario;
